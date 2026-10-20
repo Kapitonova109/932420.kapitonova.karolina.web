@@ -1,0 +1,378 @@
+/* Лабораторная работа 4, вариант 16 - Предприниматель и стартапер */
+
+/* Переменные: цвета и шрифты. Меняем здесь - меняется на всей странице */
+:root {
+    --main: #c25400; /* основной оранжевый (тёмный, чтобы белый текст читался) */
+    --dark: #8a3a00; /* тёмный оранжевый для подвала */
+    --button-dark: #612100; /* контрастный тёмно-оранжевый для градиента кнопки */
+    --accent: #ffffff; /* акцентный белый */
+    --text: #1a1a1a; /* цвет текста */
+    --gray: #f5f5f5; /* фон секций */
+    --peach: #ffe9cf; /* фон боковой панели */
+    --light: #ffd9bf; /* цвет посещённых ссылок в подвале */
+    --font: Arial, Helvetica, sans-serif;
+    --font-title: Georgia, "Times New Roman", serif;
+}
+
+/* Настройки для всей страницы */
+body {
+    font-family: var(--font);
+    margin: 20px;
+    background-color: var(--accent);
+    color: var(--text);
+}
+
+h1, h2 {
+    font-family: var(--font-title);
+}
+
+/* Курсор-рука только у интерактивных элементов */
+a, button, input, textarea {
+    cursor: pointer;
+}
+
+/* Общие стили и состояния ссылок, включая ссылки вне подвала */
+a {
+    color: var(--main);
+}
+
+a:visited {
+    color: var(--dark);
+}
+
+a:hover {
+    color: var(--dark);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
+a:focus {
+    outline: 2px solid var(--main);
+    outline-offset: 3px;
+}
+
+a:active {
+    color: var(--text);
+}
+
+/* Шапка сайта */
+header {
+    background-color: var(--main);
+    color: var(--accent);
+    padding: 15px;
+}
+
+/* Блоки с текстом */
+section {
+    background-color: var(--gray);
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+/* Боковая панель */
+aside {
+    float: right;
+    width: 200px;
+    padding: 10px;
+    background-color: var(--peach);
+}
+
+/* Сброс обтекания после боковой панели */
+.clear {
+    clear: both;
+}
+
+img {
+    border: 2px solid var(--main);
+}
+
+/* Позиционирование */
+
+/* relative: секция "Навыки" - точка отсчёта для бейджа */
+.skills {
+    position: relative;
+}
+
+/* absolute: бейдж в правом верхнем углу секции "Навыки" */
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 10px;
+    background-color: var(--main);
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* static: явно задаём заголовку в секции "Проекты" (значение по умолчанию) */
+.projects h2 {
+    position: static;
+}
+
+/* Форма */
+
+input, textarea {
+    display: block;
+    width: 90%;
+    margin: 5px 0;
+    padding: 5px;
+    border: 2px solid #767676;
+    font-family: var(--font);
+}
+
+    /* Состояние :focus у полей формы */
+    input:focus, textarea:focus {
+        outline: none;
+        border-color: var(--main);
+    }
+
+/* Кнопка с градиентом: фон в 2 раза шире кнопки, при наведении сдвигается */
+button {
+    background: linear-gradient(90deg, var(--main), var(--button-dark));
+    background-size: 200% 100%;
+    background-position: 0 0;
+    color: var(--accent);
+    border: none;
+    padding: 8px 16px;
+    transition: background-position 0.6s ease, box-shadow 0.2s;
+}
+
+    /* При наведении градиент "уезжает" */
+    button:hover {
+        background-position: 100% 0;
+    }
+
+    /* Белая обводка и тень при фокусе */
+    button:focus {
+        outline: 3px solid var(--accent);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 6px var(--button-dark), 0 6px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    /* При нажатии сдвиг градиента меньше, чем при наведении */
+    button:active {
+        background-position: 40% 0;
+    }
+
+/* Подвал и ссылки */
+
+footer {
+    background-color: var(--dark);
+    color: var(--accent);
+    padding: 10px;
+    text-align: center;
+}
+
+    /* Состояния ссылок (базовый вид задан во внутреннем <style> в HTML) */
+    footer a:visited {
+        color: var(--light);
+    }
+
+    footer a:hover {
+        color: var(--peach);
+        text-decoration: underline;
+    }
+
+    footer a:active {
+        color: var(--peach);
+    }
+
+    footer a:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+    }
+
+
+/* Размеры блоков */
+* {
+    box-sizing: border-box;
+}
+
+/* Адаптивное изображение */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Перенос длинного текста */
+body {
+    overflow-wrap: break-word;
+}
+
+/* Отступ у заголовка навыков */
+.skills h2 {
+    padding-right: 100px;
+}
+
+/* Навигационное меню - Flexbox */
+.nav-list {
+    display: flex;
+    /* Разрешаем перенос пунктов меню на следующую строку */
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+/* Карточки идей стартапов - Flexbox */
+.ideas-list {
+    display: flex;
+    flex-wrap: wrap;
+    /* Расстояние между карточками */
+    gap: 16px;
+}
+
+/* Ширина карточки: четверть ряда с учётом трёх промежутков по 16px */
+.idea-card {
+    flex: 0 0 calc((100% - 48px) / 4);
+    min-width: 0;
+    padding: 12px;
+    background-color: var(--accent);
+}
+
+/* Ключевые метрики - Grid */
+.metrics-grid {
+    display: grid;
+    /* Три равные колонки, две строки подстраиваются под содержимое */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    /* Первая строка - описания метрик, вторая - их графики */
+    grid-template-areas:
+        "mau ltv cac"
+        "mau-chart ltv-chart cac-chart";
+    gap: 0 16px;
+}
+
+/* Расположение метрик и графиков */
+.metric-mau { grid-area: mau; }
+.metric-ltv { grid-area: ltv; }
+.metric-cac { grid-area: cac; }
+.chart-mau { grid-area: mau-chart; }
+.chart-ltv { grid-area: ltv-chart; }
+.chart-cac { grid-area: cac-chart; }
+
+/* Верхняя часть блока: название, описание и шкала метрики */
+.metric-info {
+    min-width: 0;
+    padding: 12px;
+    background-color: var(--accent);
+}
+
+.metric-info h3 {
+    margin-top: 0;
+}
+
+/* Нижняя часть блока: график с подписью */
+.metric-chart {
+    min-width: 0;
+    margin: 0;
+    padding: 12px;
+    background-color: var(--accent);
+}
+
+/* Шкалы метрик - meter */
+.metric-info label {
+    display: block;
+}
+
+meter {
+    display: block;
+    /* Шкала занимает всю ширину блока метрики */
+    width: 100%;
+    height: 20px;
+}
+
+/* Цвет шкал */
+meter::-webkit-meter-optimum-value {
+    background: var(--main);
+}
+
+meter::-moz-meter-bar {
+    background: var(--main);
+}
+
+/* Графики метрик */
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: 100px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--text);
+}
+
+.bar {
+    flex: 1;
+    background-color: var(--main);
+}
+
+/* Высоты столбиков графиков MAU и LTV */
+.bar-one { height: 30%; }
+.bar-two { height: 45%; }
+.bar-three { height: 60%; }
+.bar-four { height: 80%; }
+
+/* Столбики графика CAC */
+.chart-cac .bar-one { height: 80%; }
+.chart-cac .bar-two { height: 60%; }
+.chart-cac .bar-three { height: 45%; }
+.chart-cac .bar-four { height: 30%; }
+
+/* Планшеты */
+@media (max-width: 1023px) {
+    /* Две карточки в ряду с одним промежутком между ними */
+    .idea-card {
+        flex-basis: calc((100% - 16px) / 2);
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        /* Третья метрика переносится ниже первых двух */
+        grid-template-areas:
+            "mau ltv"
+            "mau-chart ltv-chart"
+            "cac ."
+            "cac-chart .";
+    }
+
+    .metric-cac {
+        margin-top: 16px;
+    }
+}
+
+/* Телефоны */
+@media (max-width: 639px) {
+    /* Убираем обтекание, боковая панель занимает всю ширину */
+    aside {
+        float: none;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .idea-card {
+        flex-basis: 100%;
+    }
+
+    /* Метрики идут по одной: сначала описание, затем график */
+    .metrics-grid {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "mau"
+            "mau-chart"
+            "ltv"
+            "ltv-chart"
+            "cac"
+            "cac-chart";
+    }
+
+    .metric-ltv, .metric-cac {
+        margin-top: 16px;
+    }
+
+    footer a {
+        /* Ссылки могут переноситься на отдельные строки */
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!-- Лабораторная работа 4, вариант 16 - страница "О себе" со стилями -->
+<!-- Каролина Капитонова -->
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <!-- Адаптивность страницы -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>О себе</title>
+
+    <!-- Способ 1: внешний файл со всеми основными стилями -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Способ 2: внутренний блок style, одно правило - ссылки в подвале -->
+    <style>
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка с именем, фамилией и подзаголовком -->
+    <header>
+        <h1>Каролина Капитонова</h1>
+        <p>Предприниматель и стартапер</p>
+    </header>
+
+    <!-- Навигационное меню - Flexbox -->
+    <nav>
+        <ul class="nav-list">
+            <li><a href="#skills">Навыки</a></li>
+            <li><a href="#projects">Проекты</a></li>
+            <li><a href="#ideas">Идеи стартапов</a></li>
+            <li><a href="#metrics">Метрики</a></li>
+            <li><a href="#contact">Связь</a></li>
+        </ul>
+    </nav>
+
+    <!-- Основной контент -->
+    <main>
+
+        <!-- Боковая панель с краткой информацией -->
+        <aside>
+            <h2>Ключевая ценность</h2>
+            <p>Создание продуктов, которые упрощают жизнь.</p>
+        </aside>
+
+        <!-- Изображение -->
+        <img src="images/myphoto.jpg"
+             alt="Иллюстрация стартапа: идея, рост и запуск"
+             width="407" height="250">
+
+        <!-- Секция "Навыки" - маркированный список, внутри бейдж (position: absolute) -->
+        <section id="skills" class="skills">
+            <span class="badge">Главное</span>
+            <h2>Навыки</h2>
+            <ul>
+                <li>Маркетинг</li>
+                <li>Управление проектами</li>
+                <li>Финансовое планирование</li>
+                <li>Анализ рынка</li>
+            </ul>
+        </section>
+
+        <!-- Секция "Проекты" - нумерованный список из 4 пунктов -->
+        <section id="projects" class="projects">
+            <h2>Проекты</h2>
+            <ol>
+                <li>Приложение для заметок с напоминаниями</li>
+                <li>Платформа для обмена учебными материалами</li>
+                <li>Сайт-визитка для малого бизнеса</li>
+                <li>Сервис для поиска репетиторов</li>
+            </ol>
+        </section>
+
+        <!-- Блок, чтобы боковая панель не мешала форме -->
+        <div class="clear"></div>
+
+        <!-- Карточки идей стартапов - Flexbox -->
+        <section id="ideas">
+            <h2>Идеи стартапов</h2>
+            <div class="ideas-list">
+                <!-- Первая карточка: название, проблема и решение -->
+                <article class="idea-card">
+                    <h3>Приложение для заметок</h3>
+                    <p><strong>Проблема:</strong> важные задачи теряются среди записей.</p>
+                    <p><strong>Решение:</strong> заметки с категориями и напоминаниями.</p>
+                </article>
+                <!-- Вторая карточка: обмен учебными материалами -->
+                <article class="idea-card">
+                    <h3>Обмен учебными материалами</h3>
+                    <p><strong>Проблема:</strong> студентам сложно найти материалы по предметам.</p>
+                    <p><strong>Решение:</strong> платформа для обмена конспектами.</p>
+                </article>
+                <!-- Третья карточка: сайт-визитка для бизнеса -->
+                <article class="idea-card">
+                    <h3>Сайт-визитка для бизнеса</h3>
+                    <p><strong>Проблема:</strong> небольшим компаниям трудно найти клиентов в интернете.</p>
+                    <p><strong>Решение:</strong> сайт с описанием услуг и контактами.</p>
+                </article>
+                <!-- Четвёртая карточка: поиск репетиторов -->
+                <article class="idea-card">
+                    <h3>Поиск репетиторов</h3>
+                    <p><strong>Проблема:</strong> сложно подобрать подходящего преподавателя.</p>
+                    <p><strong>Решение:</strong> поиск по предмету, цене и расписанию.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Ключевые метрики - Grid -->
+        <section id="metrics">
+            <h2>Ключевые метрики</h2>
+            <div class="metrics-grid">
+                <!-- MAU: описание метрики и шкала количества пользователей -->
+                <div class="metric-info metric-mau">
+                    <h3>MAU</h3>
+                    <p>Количество активных пользователей за месяц.</p>
+                    <!-- Шкалы метрик - meter -->
+                    <label for="mau-meter">MAU: 1 200 из 2 000 пользователей</label>
+                    <meter id="mau-meter" min="0" max="2000" value="1200">1 200 из 2 000</meter>
+                </div>
+                <!-- График MAU расположен под описанием метрики -->
+                <figure class="metric-chart chart-mau">
+                    <!-- Графики метрик -->
+                    <div class="chart-bars" aria-hidden="true">
+                        <span class="bar bar-one"></span>
+                        <span class="bar bar-two"></span>
+                        <span class="bar bar-three"></span>
+                        <span class="bar bar-four"></span>
+                    </div>
+                    <figcaption>График MAU</figcaption>
+                </figure>
+
+                <!-- LTV: описание метрики и шкала дохода от клиента -->
+                <div class="metric-info metric-ltv">
+                    <h3>LTV</h3>
+                    <p>Доход от одного клиента за всё время.</p>
+                    <label for="ltv-meter">LTV: 6 000 из 10 000 ₽</label>
+                    <meter id="ltv-meter" min="0" max="10000" value="6000">6 000 из 10 000 ₽</meter>
+                </div>
+                <!-- График LTV расположен под описанием метрики -->
+                <figure class="metric-chart chart-ltv">
+                    <div class="chart-bars" aria-hidden="true">
+                        <span class="bar bar-one"></span>
+                        <span class="bar bar-two"></span>
+                        <span class="bar bar-three"></span>
+                        <span class="bar bar-four"></span>
+                    </div>
+                    <figcaption>График LTV</figcaption>
+                </figure>
+
+                <!-- CAC: описание метрики и шкала стоимости привлечения клиента -->
+                <div class="metric-info metric-cac">
+                    <h3>CAC</h3>
+                    <p>Стоимость привлечения одного клиента.</p>
+                    <label for="cac-meter">CAC: 900 из 2 000 ₽</label>
+                    <meter id="cac-meter" min="0" max="2000" value="900">900 из 2 000 ₽</meter>
+                </div>
+                <!-- График CAC расположен под описанием метрики -->
+                <figure class="metric-chart chart-cac">
+                    <div class="chart-bars" aria-hidden="true">
+                        <span class="bar bar-one"></span>
+                        <span class="bar bar-two"></span>
+                        <span class="bar bar-three"></span>
+                        <span class="bar bar-four"></span>
+                    </div>
+                    <figcaption>График CAC</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Форма обратной связи: Имя, Email, Сообщение, кнопка отправки -->
+        <section id="contact">
+            <h2>Связь</h2>
+            <form>
+                <label for="name">Имя</label>
+                <input type="text" id="name" name="name" placeholder="Введите ваше имя">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="example@mail.com">
+
+                <label for="message">Сообщение</label>
+                <textarea id="message" name="message" placeholder="Напишите ваше сообщение..."></textarea>
+
+                <!-- Способ 3: inline-стиль на одном интерактивном элементе -->
+                <button type="submit" style="cursor: pointer;">Отправить</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Нижняя часть страницы: ссылки и копирайт -->
+    <footer>
+        <p>
+            <a href="#">Наверх</a>
+            <a href="https://vk.com/" target="_blank" rel="noopener">ВКонтакте</a>
+            <a href="https://t.me/" target="_blank" rel="noopener">Telegram</a>
+        </p>
+        <p>&copy; 2026 Каролина Капитонова</p>
+    </footer>
+
+    <!-- Подключение JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

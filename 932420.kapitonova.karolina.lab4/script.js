@@ -50,6 +50,26 @@ function getSum(numbers) {
     return sum;
 }
 
+// Подсчёт дней с выручкой не больше 3 000 рублей
+function countLowIncome(numbers) {
+    var count = 0;
+
+    for (var i = 0; i < numbers.length; i++) {
+        if (numbers[i] <= 3000) {
+            count = count + 1;
+            console.log("День " + (i + 1) + ": низкая выручка — " + numbers[i] + " ₽");
+        }
+    }
+
+    // Доля дней с низкой выручкой в процентах
+    var share = count / numbers.length * 100;
+
+    return {
+        count: count,
+        share: share
+    };
+}
+
 // Вызов функций
 var maxIncome = getMax(income);
 var highIncome = filterIncome(income);
@@ -58,21 +78,10 @@ var total = getSum(income);
 console.log("Максимальная выручка: " + maxIncome + " ₽");
 console.log("Выручка больше 10 000 ₽:", highIncome);
 
-// Подсчёт дней с выручкой не больше 3 000 рублей
-var lowCount = 0;
+var lowIncome = countLowIncome(income);
 
-for (var i = 0; i < income.length; i++) {
-    if (income[i] <= 3000) {
-        lowCount = lowCount + 1;
-        console.log("День " + (i + 1) + ": низкая выручка — " + income[i] + " ₽");
-    }
-}
-
-// Доля дней с низкой выручкой в процентах
-var lowShare = lowCount / income.length * 100;
-
-console.log("Количество дней с низкой выручкой: " + lowCount);
-console.log("Доля дней с низкой выручкой: " + lowShare.toFixed(2) + "%");
+console.log("Количество дней с низкой выручкой: " + lowIncome.count);
+console.log("Доля дней с низкой выручкой: " + lowIncome.share.toFixed(2) + "%");
 
 // Вывод общей выручки и количества дней с высокими показателями
 alert("Общая выручка – " + total + " ₽, в " + highIncome.length + " днях показатели были высокими");

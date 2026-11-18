@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<!-- Лабораторная работа 5, вариант 16 - страница "О себе" со стилями -->
+<!-- Лабораторная работа 6, вариант 16 - страница "О себе" со стилями -->
 <!-- Каролина Капитонова -->
 <html lang="ru">
 <head>
     <meta charset="utf-8">
     <!-- Адаптивность страницы -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>О себе</title>
+    <title>Каролина Капитонова — конвертер температур</title>
+    <meta name="theme-color" content="#c25400">
+    <!-- Подключение настроек установки приложения -->
+    <link rel="manifest" href="/manifest.json">
 
     <!-- Способ 1: внешний файл со всеми основными стилями -->
     <link rel="stylesheet" href="style.css">
@@ -32,6 +35,8 @@
     <!-- Навигационное меню - Flexbox -->
     <nav>
         <ul class="nav-list">
+            <li><a href="#temperature">Конвертер температур</a></li>
+            <li><a href="/about">О себе</a></li>
             <li><a href="#skills">Навыки</a></li>
             <li><a href="#projects">Проекты</a></li>
             <li><a href="#ideas">Идеи стартапов</a></li>
@@ -42,6 +47,32 @@
 
     <!-- Основной контент -->
     <main>
+        <!-- Конвертер отправляет данные на сервер -->
+        <section id="temperature">
+            <h2>Конвертер температур</h2>
+            <form id="temperature-form">
+                <label for="temperature-value">Температура</label>
+                <input id="temperature-value" name="value" type="number" step="any" value="25" required>
+                <div class="temperature-units">
+                    <label for="temperature-from">Из
+                        <select id="temperature-from" name="from">
+                            <option value="C">Цельсий (°C)</option>
+                            <option value="F">Фаренгейт (°F)</option>
+                            <option value="K">Кельвин (K)</option>
+                        </select>
+                    </label>
+                    <label for="temperature-to">В
+                        <select id="temperature-to" name="to">
+                            <option value="C">Цельсий (°C)</option>
+                            <option value="F" selected>Фаренгейт (°F)</option>
+                            <option value="K">Кельвин (K)</option>
+                        </select>
+                    </label>
+                </div>
+                <button type="submit">Перевести</button>
+                <p id="temperature-result" role="status"></p>
+            </form>
+        </section>
 
         <!-- Боковая панель с краткой информацией -->
         <aside>
@@ -50,7 +81,7 @@
         </aside>
 
         <!-- Изображение -->
-        <img src="images/myphoto.jpg"
+        <img src="Изображения/myphoto.jpg"
              alt="Иллюстрация стартапа: идея, рост и запуск"
              width="407" height="250">
 
@@ -120,6 +151,7 @@
         <!-- Ключевые метрики - Grid -->
         <section id="metrics">
             <h2>Ключевые метрики</h2>
+            <p><button id="revenue-button" type="button">Рассчитать выручку</button></p>
             <div class="metrics-grid">
                 <!-- MAU: описание метрики и шкала количества пользователей -->
                 <div class="metric-info metric-mau">
@@ -212,5 +244,15 @@
     <!-- Подключение JavaScript -->
     <script src="script.js"></script>
     <script src="ideas.js"></script>
+    <!-- Подключение расчёта температуры и работы формы -->
+    <script src="/temperature.js"></script>
+    <!-- Подключение service worker для работы без сети -->
+    <script>
+        // Проверка поддержки service worker в браузере
+        if ("serviceWorker" in navigator) {
+            // Регистрация sw.js и вывод ошибки подключения в консоль
+            navigator.serviceWorker.register("/sw.js").catch(console.error);
+        }
+    </script>
 </body>
 </html>

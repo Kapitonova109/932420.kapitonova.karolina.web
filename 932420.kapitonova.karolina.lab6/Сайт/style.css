@@ -1,4 +1,4 @@
-/* Лабораторная работа 5, вариант 16 - Предприниматель и стартапер */
+/* Лабораторная работа 6, вариант 16 - Предприниматель и стартапер */
 
 /* Переменные: цвета и шрифты. Меняем здесь - меняется на всей странице */
 :root {
@@ -499,4 +499,36 @@ button:disabled {
 
 .dark-theme footer a {
     color: var(--accent);
+}
+
+
+/* Поля конвертера и выбор единиц */
+#temperature-form {
+    max-width: 420px;
+}
+
+#temperature-form input {
+    width: 100%;
+    cursor: text;
+}
+
+.temperature-units {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.temperature-units select {
+    font: inherit;
+    padding: 4px;
+}
+
+.temperature-units label {
+    white-space: nowrap;
+}
+
+#temperature-result:empty {
+    display: none;
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#c25400">
+    <title>О себе — Каролина Капитонова</title>
+    <link rel="stylesheet" href="/style.css">
+    <!-- Подключение настроек установки приложения -->
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+    <header>
+        <h1>О себе</h1>
+    </header>
+
+    <nav>
+        <ul class="nav-list">
+            <li><a href="/">Главная</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Каролина Капитонова</h2>
+            <p>Группа 932420. Предмет «Веб-технологии».</p>
+            <p>Лабораторная работа №6, вариант 16: «Конвертер температур».</p>
+        </section>
+    </main>
+
+    <footer><p>&copy; 2026 Каролина Капитонова</p></footer>
+    <!-- Подключение service worker для работы без сети -->
+    <script>
+        // Проверка поддержки service worker в браузере
+        if ("serviceWorker" in navigator) {
+            // Регистрация sw.js и вывод ошибки подключения в консоль
+            navigator.serviceWorker.register("/sw.js").catch(console.error);
+        }
+    </script>
+</body>
+</html>
